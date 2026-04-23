@@ -61,7 +61,7 @@ def get_groq_answers(api_key, questions):
     try:
         client = Groq(api_key=api_key)
         
-        prompt = "You are a helpful assistant. Please provide the correct answer for the following questions. Output ONLY the question and the correct answer. Format it clearly.\n\n"
+        prompt = "You are a helpful assistant. Please provide the correct answer for the following questions. Output the response so that each answer is directly below its corresponding question. Use the format:\n\n**Question:** [The Question]\n**Answer:** [The Answer]\n\n"
         for i, q in enumerate(questions):
             prompt += f"Q{i+1}: {q['question']}\n"
             if q['options']:
