@@ -18,12 +18,9 @@ def scrape_google_form(url):
     html = response.text
     
     # Extract the JSON embedded in the form's HTML
-    match = re.search(r'var FB_PUBLIC_LOAD_DATA_ = (\[.*?\]);\n', html, re.DOTALL)
-    if not match:
-         return None, "Could not find form data. Ensure the form is public and the link is correct."
-         
     try:
-        data = json.loads(match.group(1))
+        data_str = html.split('var FB_PUBLIC_LOAD_DATA_ = ')[1].split(';</script>')[0]
+        data = json.loads(data_str)
         # Questions are typically found in data[1][1]
         questions_data = data[1][1]
         parsed_questions = []
