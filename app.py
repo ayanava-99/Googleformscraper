@@ -71,7 +71,7 @@ def get_groq_answers(api_key, questions):
             prompt += "\n"
             
         response = client.chat.completions.create(
-            model="llama3-70b-8192",  # Using Llama 3 70B, which is free and fast on Groq
+            model="llama-3.3-70b-versatile",  # Using Llama 3.3 70B, which is free and fast on Groq
             messages=[{"role": "user", "content": prompt}],
             temperature=0.0
         )
